@@ -1,7 +1,8 @@
 package com.belrose.microsvcone.service;
 
 import com.belrose.microsvcone.pojo.Person;
+import reactor.core.publisher.Mono;
 
 public interface PersonService {
-    Person sentPersonToServiceOne(Person person) throws Exception;
+    Mono<Person> sentPersonToServiceOne(Person person) throws Exception;
 }

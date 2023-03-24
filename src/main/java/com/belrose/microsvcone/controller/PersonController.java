@@ -9,6 +9,7 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
+import reactor.core.publisher.Mono;
 
 @RestController
 @Slf4j
@@ -21,9 +22,9 @@ public class PersonController {
     }
 
     @PostMapping(path = "/person",consumes = MediaType.APPLICATION_JSON_VALUE)
-    public ResponseEntity<Person> SendPerson(@RequestBody Person person){
+    public ResponseEntity<Mono<Person>> SendPerson(@RequestBody Person person){
         try{
-            Person response = personService.sentPersonToServiceOne(person);
+            Mono<Person> response = personService.sentPersonToServiceOne(person);
             return ResponseEntity.ok(response);
         }catch (Exception ex){
             ex.getStackTrace();
